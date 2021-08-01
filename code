@@ -1,0 +1,52 @@
+//https://leetcode.com/problems/3sum/
+class Solution {
+public:
+    vector<vector<int>> threeSum(vector<int>& nums) {
+        vector<vector<int>>v2;
+        vector<vector<int>>v3;
+        int n = nums.size();
+        int i=0;
+        set<vector<int>> st;
+        sort(nums.begin(),nums.end());
+       
+        if(nums.size()<3){
+            return v2;
+        }
+    
+        while(i<n-2){
+           int j=i+1;
+           int k=nums.size()-1;
+           int  target = (-1)*nums[i];
+            while(j<k){
+           //   cout<<nums1[i]+nums1[j]+nums[k];
+            if(nums[j]+nums[k]==target){
+                vector<int>v;
+                v.push_back(nums[i]);
+                v.push_back(nums[j]);
+                v.push_back(nums[k]);
+                // cout<<nums1[i]<<" "<<nums1[j]<<" "<<nums1[k]<<endl;
+                v2.push_back(v);
+               
+                j++;
+                k--;
+                
+            }
+            else if(nums[j]+nums[k]<target){
+            j++;
+            }
+            else if(nums[j]+nums[k]>target){
+            k--;
+            }
+                
+        }
+            i++;
+        }
+        for(i=0; i<v2.size(); i++){
+            st.insert(v2[i]);
+        }
+        for(auto x : st){
+            v3.push_back(x);
+        }
+        return v3;
+    }
+};
